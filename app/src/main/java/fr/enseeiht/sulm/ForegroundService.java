@@ -46,7 +46,7 @@ public class ForegroundService extends Service {
         //do heavy work on a background thread
 
         notificationTitle = "Scanning in progress...";
-        updateNotification();
+        //updateNotification();
 
         scheduler = (JobScheduler) getSystemService(Context.JOB_SCHEDULER_SERVICE);
 
@@ -62,7 +62,7 @@ public class ForegroundService extends Service {
         Notification notification = new NotificationCompat.Builder(instance, CHANNEL_ID)
                 //.setSmallIcon(R.drawable.app_icon)
                 .setContentTitle(notificationTitle)
-                .setContentText("Mon texte")
+                .setContentText("Mon text")
                 .setContentIntent(pendingIntent)
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .build();
@@ -86,10 +86,6 @@ public class ForegroundService extends Service {
         if (result == JobScheduler.RESULT_SUCCESS) {
             Log.d("foreground service", "success");
         }
-    }
-
-    public static void displayToast() {
-        Toast.makeText(instance, "scan successful", Toast.LENGTH_LONG).show();
     }
 
     private void createNotificationChannel() {
