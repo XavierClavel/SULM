@@ -46,7 +46,8 @@ public class RequestInterface {
         }};
 
 
-        URL url = new URL("http://172.20.10.3:3000/api/location");
+        //URL url = new URL("http://172.20.10.3:3000/api/location");
+            URL url = new URL("http://192.168.221.148:3000/api/location");
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("POST");
 
@@ -67,7 +68,6 @@ public class RequestInterface {
             if (con.getResponseCode() != 0) {
                 Log.d("ping",con.getResponseCode()+"");
             }
-
 
     } catch (Exception e) {
         e.printStackTrace();}

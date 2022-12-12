@@ -3,7 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/xrcla/AndroidStudioProjects/SULM/app/src/main/res/layout/activity_main.xml" value="0.2078804347826087" />
+        <entry key="..\:/Users/xrcla/AndroidStudioProjects/SULM/app/src/main/res/drawable/ic_launcher_background.xml" value="0.115" />
+        <entry key="..\:/Users/xrcla/AndroidStudioProjects/SULM/app/src/main/res/drawable/ic_on.xml" value="0.115" />
+        <entry key="..\:/Users/xrcla/AndroidStudioProjects/SULM/app/src/main/res/drawable/light_off.xml" value="0.115" />
+        <entry key="..\:/Users/xrcla/AndroidStudioProjects/SULM/app/src/main/res/drawable/light_on.xml" value="0.115" />
+        <entry key="..\:/Users/xrcla/AndroidStudioProjects/SULM/app/src/main/res/layout/activity_main.xml" value="0.176" />
+        <entry key="..\:/Users/xrcla/AndroidStudioProjects/SULM/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.115" />
+        <entry key="..\:/Users/xrcla/AndroidStudioProjects/SULM/app/src/main/res/mipmap-anydpi-v26/light_on.xml" value="0.115" />
       </map>
     </option>
   </component>

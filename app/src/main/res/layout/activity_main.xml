@@ -8,30 +8,17 @@
     android:backgroundTint="@color/background"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        android:textColor="@color/yellow"
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="422dp"
+        android:layout_height="436dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginBottom="180dp"
+        android:background="#00FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Switch
-        android:id="@+id/Switch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="182dp"
-        android:layout_marginTop="278dp"
-        android:layout_marginEnd="183dp"
-        android:layout_marginBottom="51dp"
-        android:buttonTint="#FF0000"
-        android:drawableTint="#FF0000"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/light_off" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

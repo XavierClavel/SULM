@@ -37,16 +37,15 @@ public class ForegroundService extends Service {
         Intent notificationIntent = new Intent(this, MainActivity.class);
         pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
         Notification notification = new NotificationCompat.Builder(this, CHANNEL_ID)
-                //.setSmallIcon(R.drawable.app_icon)
+                .setSmallIcon(R.mipmap.ic_launcher)
                 .setContentTitle("SULM")
-                .setContentText("Application is starting...")
+                .setContentText("Sample Text")
                 .setContentIntent(pendingIntent)
                 .build();
         startForeground(1, notification);
         //do heavy work on a background thread
 
         notificationTitle = "Scanning in progress...";
-        //updateNotification();
 
         scheduler = (JobScheduler) getSystemService(Context.JOB_SCHEDULER_SERVICE);
 
@@ -57,20 +56,6 @@ public class ForegroundService extends Service {
         scheduleJobs();
         return START_NOT_STICKY;
     }
-
-    public static void updateNotification() {
-        Notification notification = new NotificationCompat.Builder(instance, CHANNEL_ID)
-                //.setSmallIcon(R.drawable.app_icon)
-                .setContentTitle(notificationTitle)
-                .setContentText("Mon text")
-                .setContentIntent(pendingIntent)
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                .build();
-
-        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(instance);
-        notificationManager.notify(1, notification);
-    }
-
 
     public static void scheduleJobs(){
         if (shouldReschedule) scheduleJobLocation();
@@ -113,7 +98,6 @@ public class ForegroundService extends Service {
 
     @Override
     public void onDestroy() {
-        //unregisterReceiver(BluetoothJobService.receiver);   //avoid leaking
         Log.d("foreground service", "foreground service destroyed");
         super.onDestroy();
     }
