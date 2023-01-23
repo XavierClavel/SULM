@@ -39,7 +39,7 @@ public class ForegroundService extends Service {
         Notification notification = new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setContentTitle("SULM")
-                .setContentText("Sample Text")
+                .setContentText("Service Actif")
                 .setContentIntent(pendingIntent)
                 .build();
         startForeground(1, notification);

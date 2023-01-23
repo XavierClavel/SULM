@@ -6,9 +6,10 @@ import com.google.android.gms.maps.model.LatLng;
 
 import java.io.DataOutputStream;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
 
 public class RequestInterface {
     /*
@@ -27,6 +28,7 @@ public class RequestInterface {
     }
 
     public static void sendRequest(LatLng latLng) {
+        //pos = new LatLng(0,0);
         pos = latLng;
         Thread t = new Thread(new networkThread());
         t.start();
@@ -40,44 +42,50 @@ public class RequestInterface {
     {
 
         try {
-        HashMap values = new HashMap<String, String>() {{
-            put("latitude", ""+pos.latitude);
-            put ("longitude", ""+pos.longitude);
-        }};
+
+            Log.d("data", "sending...");
 
 
-        //URL url = new URL("http://172.20.10.3:3000/api/location");
-            URL url = new URL("http://192.168.221.148:3000/api/location");
-        HttpURLConnection con = (HttpURLConnection) url.openConnection();
-        con.setRequestMethod("POST");
+            //URL url = new URL("http://172.20.10.3:3000/api/location");
+            URL url = new URL("http://172.20.10.2:3000/api/location");
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            con.setRequestMethod("POST");
 
-        String urlParameters  = "param1=a&param2=b&param3=c";
-        urlParameters = "latitude=" + pos.latitude + "&longitude=" + pos.longitude;
-        byte[] postData       = urlParameters.getBytes( StandardCharsets.UTF_8 );
-        int    postDataLength = postData.length;
-        con.setDoOutput( true );
-        con.setInstanceFollowRedirects( false );
-        con.setRequestProperty( "Content-Type", "application/x-www-form-urlencoded");
-        con.setRequestProperty( "charset", "utf-8");
-        con.setRequestProperty( "Content-Length", Integer.toString( postDataLength ));
-        con.setUseCaches( false );
-        try( DataOutputStream wr = new DataOutputStream( con.getOutputStream())) {
-            wr.write( postData );
-        } catch(Exception e) {}
-
+            String urlParameters = "param1=a&param2=b&param3=c";
+            urlParameters = "latitude=" + pos.latitude + "&longitude=" + pos.longitude;
+            byte[] postData = urlParameters.getBytes(StandardCharsets.UTF_8);
+            int postDataLength = postData.length;
+            con.setDoOutput(true);
+            con.setInstanceFollowRedirects(false);
+            con.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+            con.setRequestProperty("charset", "utf-8");
+            con.setRequestProperty("Content-Length", Integer.toString(postDataLength));
+            con.setUseCaches(false);
+            Log.d("data", "request formed");
+            try (DataOutputStream wr = new DataOutputStream(con.getOutputStream())) {
+                wr.write(postData);
+                if (con.getResponseCode() == 200) {
+                    Log.d("data sent", "ok");
+                }
+            } catch (Exception e) {
+            }
+            Log.d("failed", con.getResponseCode() + "");
             if (con.getResponseCode() != 0) {
-                Log.d("ping",con.getResponseCode()+"");
+                Log.d("ping", con.getResponseCode() + "");
             }
 
-    } catch (Exception e) {
+        } catch (MalformedURLException e) {
+            Log.d("Exception", "Malformed URL");
+        } catch(ProtocolException e) {
+            Log.d("Exception", "Protocol error");
+        } catch (Exception e) {
         e.printStackTrace();}
     }
 
     public static void ping()
     {
         try {
-            //URL url = new URL("http://" + "www.google.com");
-            URL url = new URL("http://172.20.10.3");
+            URL url = new URL("http://172.20.10.2");
 
 
             HttpURLConnection urlc = (HttpURLConnection) url.openConnection();

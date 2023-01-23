@@ -69,6 +69,7 @@ public class LocationJobService extends JobService {
         void getLocationData() {
             checkPermission();
 
+
             MainActivity.fusedLocationClient.getCurrentLocation(LocationRequest.QUALITY_HIGH_ACCURACY, new CancellationToken() {
                 @Override
                 public boolean isCancellationRequested() {
@@ -95,6 +96,8 @@ public class LocationJobService extends JobService {
                     }
                 }
             });
+
+
             return;
         }
     }
